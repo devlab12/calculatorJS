@@ -19,7 +19,7 @@ document.getElementById("backspace").addEventListener("click", function () {
     }
 });
 
-
+// Number mouse click event handling
 document.getElementById("num1").addEventListener("click", numberClick);
 document.getElementById("num2").addEventListener("click", numberClick);
 document.getElementById("num3").addEventListener("click", numberClick);
@@ -31,8 +31,10 @@ document.getElementById("num8").addEventListener("click", numberClick);
 document.getElementById("num9").addEventListener("click", numberClick);
 document.getElementById("num0").addEventListener("click", numberClick);
 
+// Dot mouse click event handling
+document.getElementById("numDot").addEventListener("click", dotClick);
 
-   
+// Number click functionality implementation   
 function numberClick(){  
     var currentNum = this.innerHTML;
 
@@ -44,6 +46,13 @@ function numberClick(){
     }else{
         displayScreen.innerHTML += currentNum;
         return;
+    };
+};
+
+// Dot click functionality implementation
+function dotClick(){
+    if(displayScreen.innerHTML.search(",") == -1){
+       displayScreen.innerHTML += ",";
     };
 };
 
