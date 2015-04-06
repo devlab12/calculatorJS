@@ -3,27 +3,27 @@
 // =======
 
 // This keeps the object of a display block
-var displayScreen = document.getElementById("calcDisplay");
+var displayValue = document.getElementById("calcDisplay");
 
 // This is needed to keep a previous value and an operator for calculations
-var operationType = false;
+var operatorType = false;
 var previousValue = 0;
-
+var currentValue = 0;
 
 // === EVENTS HANDLING ===
 
 // Reset button click event
 document.getElementById("reset").addEventListener("click", function () {
-    displayScreen.innerHTML = "0";
+    displayValue.innerHTML = "0";
     previousValue = 0;
 });
 
 // Backspace button event
 document.getElementById("backspace").addEventListener("click", function () {
-    if (displayScreen.innerHTML.length > 1) {
-        displayScreen.innerHTML = displayScreen.innerHTML.substr(0, displayScreen.innerHTML.length - 1);
+    if (displayValue.innerHTML.length > 1) {
+        displayValue.innerHTML = displayValue.innerHTML.substr(0, displayValue.innerHTML.length - 1);
     } else {
-        displayScreen.innerHTML = "0";
+        displayValue.innerHTML = "0";
     }
 });
 
@@ -56,63 +56,65 @@ document.getElementById("sum").addEventListener("click", operatorSum);
 
 // Number click functionality implementation   
 function numberClick(){  
-    var currentNum = this.innerHTML;
-
-    if(displayScreen.innerHTML == 0){
-        displayScreen.innerHTML = currentNum;
-        return;
-    }else if(displayScreen.innerHTML.length == 20){
+    var currentValue = this.innerHTML;
+    operatorIsDisplayed = false;
+    
+    if(displayValue.innerHTML == 0){
+        displayValue.innerHTML = currentValue;
+    }else if(displayValue.innerHTML.length == 20){
         alert('Too many symbols!');
     }else{
-        displayScreen.innerHTML += currentNum;
-        return;
+        //displayValue.innerHTML += currentValue;
+        displayValue.innerHTML = currentValue;
     };
 };
 
 // Dot click functionality implementation
 function dotClick(){
-    if(displayScreen.innerHTML.search(",") == -1){
-       displayScreen.innerHTML += ",";
+    if(displayValue.innerHTML.search(",") == -1){
+       displayValue.innerHTML += ",";
     };
 };
 
 // Operator click functionality implementation
 function operatorClick(){
-    operationType = this.innerHTML;
+    operatorType = this.innerHTML;
     
-    if (operationType == "+"){
-        previousValue += +displayScreen.innerHTML;
-    }else if(operationType == "-"){
-        previousValue -= +displayScreen.innerHTML;
-    }else if(operationType == "/"){
-        previousValue /= +displayScreen.innerHTML;
+    if (operatorType == "+"){
+        previousValue += +displayValue.innerHTML;
+    }else if(operatorType == "-"){
+        previousValue -= +displayValue.innerHTML;
+    }else if(operatorType == "/"){
+        previousValue /= +displayValue.innerHTML;
     }else{
         // multiply operator goes the last to avoid the comparison with its symbol
-        previousValue *= +displayScreen.innerHTML;
+        previousValue *= +displayValue.innerHTML;
     };
     
     // Clearing the display to collect different variables to be operated
-    displayScreen.innerHTML = "0";
+    displayValue.innerHTML = operatorType;
     
     console.log("previous value is " + previousValue);
-    console.log(operationType);
+    console.log(operatorType);
+    
+    
 };
 
 // Sum operator click functionality implementation
 function operatorSum(){
-    if (operationType == "+"){
-         displayScreen.innerHTML = +displayScreen.innerHTML + previousValue;
-    }else if(operationType == "-"){
-        displayScreen.innerHTML = +displayScreen.innerHTML - previousValue;
-    }else if(operationType == "/"){
-        displayScreen.innerHTML = +displayScreen.innerHTML / previousValue;
+    if (operatorType == "+"){
+         displayValue.innerHTML = +displayValue.innerHTML + previousValue;
+    }else if(operatorType == "-"){
+        displayValue.innerHTML = +displayValue.innerHTML - previousValue;
+    }else if(operatorType == "/"){
+        displayValue.innerHTML = +displayValue.innerHTML / previousValue;
     }else{
         // multiply operator goes the last to avoid the comparison with its symbol
-        displayScreen.innerHTML = +displayScreen.innerHTML * previousValue;
+        displayValue.innerHTML = +displayValue.innerHTML * previousValue;
     };
     
     console.log("previous value is " + previousValue);
-    console.log(operationType);
+    console.log(operatorType);
 };
 
 // =======
