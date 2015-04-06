@@ -1,17 +1,21 @@
-var displayNum = document.getElementById("calcDisplay").innerHTML;
+// =======
+// Functionality block
+// =======
+
+
+var displayScreen = document.getElementById("calcDisplay");
 
 // Reset button click event
 document.getElementById("reset").addEventListener("click", function () {
-    document.getElementById("calcDisplay").innerHTML = "0";
+    displayScreen.innerHTML = "0";
 });
 
 // Bacspace button event
 document.getElementById("backspace").addEventListener("click", function () {
-    if (document.getElementById("calcDisplay").innerHTML.length > 1) {
-        document.getElementById("calcDisplay").innerHTML = 
-        document.getElementById("calcDisplay").innerHTML.substr(0, document.getElementById("calcDisplay").innerHTML.length - 1);
+    if (displayScreen.innerHTML.length > 1) {
+        displayScreen.innerHTML = displayScreen.innerHTML.substr(0, displayScreen.innerHTML.length - 1);
     } else {
-        document.getElementById("calcDisplay").innerHTML = "0";
+        displayScreen.innerHTML = "0";
     }
 });
 
@@ -30,16 +34,15 @@ document.getElementById("num0").addEventListener("click", numberClick);
 
    
 function numberClick(){  
-    console.log(123);
     var currentNum = this.innerHTML;
 
-    if(document.getElementById("calcDisplay").innerHTML == 0){
-        document.getElementById("calcDisplay").innerHTML = currentNum;
+    if(displayScreen.innerHTML == 0){
+        displayScreen.innerHTML = currentNum;
         return;
-    }else if(document.getElementById("calcDisplay").innerHTML.length == 20){
+    }else if(displayScreen.innerHTML.length == 20){
         alert('Too many symbols!');
     }else{
-        document.getElementById("calcDisplay").innerHTML += currentNum;
+        displayScreen.innerHTML += currentNum;
         return;
     };
 };
@@ -62,3 +65,7 @@ function newScript(){
 }
 
 */
+
+// =======
+// Visualisation block
+// =======
