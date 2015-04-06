@@ -1,0 +1,76 @@
+.calcBody{
+    background-color: #EDDDB9;
+    width: 600px;
+    height: 620px;  
+    padding: 20px
+}
+
+#calcDisplay{
+    background-color: aliceblue;
+    padding: 20px 20px 20px 20px;
+    width: 450px;
+    margin: 0 0 0  60px;
+    text-align: right;
+    vertical-align: middle;
+    font-size: 45;
+}
+
+#reset{
+    font-size: 30;
+    color:black;
+    width: 180px;
+    border: solid 1px;
+    text-align: center;
+    margin: 20px 0 20px 60px;
+    cursor: pointer;
+    float: left;
+}
+
+#backspace{
+    font-size: 30;
+    color:black;
+    width: 288px;
+    border: solid 1px;
+    text-align: center;
+    margin: 20px 50px 20px 0;
+    cursor: pointer;
+    float: right;
+}
+
+#numbers{
+    font-size: 90;
+    color:black;
+    width: 400px;
+    float:left;
+    margin-left: 60px;
+}
+#numbers div{
+    border: solid 1px;
+    width: 130px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+
+}
+
+#calcButtons{
+    width: 80px;
+    font-size: 90;
+    color:black;
+    margin: 0 50px 0 0;
+    float:right;
+    //border: solid 1px; 
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#buttn{
+    border: solid 1px;
+    cursor: pointer;
+}
+
+.clicked{
+    background-color:#C9AF77 ;
+}
+
