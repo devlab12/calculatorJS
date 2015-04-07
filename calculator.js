@@ -6,7 +6,7 @@
 var displayValue = document.getElementById("calcDisplay");
 
 // This is needed to keep a previous value and an operator for calculations
-var operatorType = false;
+var operatorType, categoryType, globalSum;
 var previousValue = 0;
 var currentValue = 0;
 
@@ -16,6 +16,9 @@ var currentValue = 0;
 document.getElementById("reset").addEventListener("click", function () {
     displayValue.innerHTML = "0";
     previousValue = 0;
+    currentValue = 0;
+    categoryType = 0;
+    globalSum = 0;
 });
 
 // Backspace button event
@@ -56,69 +59,74 @@ document.getElementById("sum").addEventListener("click", operatorSum);
 
 // Number click functionality implementation   
 function numberClick(){  
-    var currentValue = this.innerHTML;
-    operatorIsDisplayed = false;
+    currentValue = this.innerHTML;
+
+    if(categoryType == "sum"){
+        //previousValue = 0;
+        globalSum = 0;
+    };
     
     if(displayValue.innerHTML == 0){
         displayValue.innerHTML = currentValue;
     }else if(displayValue.innerHTML.length == 20){
         alert('Too many symbols!');
     }else{
-        //displayValue.innerHTML += currentValue;
-        displayValue.innerHTML = currentValue;
+        if(categoryType == "number"){    
+            displayValue.innerHTML += currentValue;
+            //previousValue = displayValue.innerHTML; 
+        }else{
+            //previousValue
+            displayValue.innerHTML = currentValue;
+        };
     };
     
-    console.log("Number - previous value is " + previousValue);
-    console.log("Number - current value is " + currentValue);
-    
+    categoryType = "number";
 };
 
 // Dot click functionality implementation
 function dotClick(){
     if(displayValue.innerHTML.search(",") == -1){
-       displayValue.innerHTML += ",";
+       displayValue.innerHTML += ".";
     };
 };
 
 // Operator click functionality implementation
 function operatorClick(){
-    operatorType = this.innerHTML;
+    previousValue = displayValue.innerHTML; 
     
-    if (operatorType == "+"){
-        previousValue += +displayValue.innerHTML;
-    }else if(operatorType == "-"){
-        previousValue -= +displayValue.innerHTML;
-    }else if(operatorType == "/"){
-        previousValue /= +displayValue.innerHTML;
-    }else{
-        // multiply operator goes the last to avoid the comparison with its symbol
-        previousValue *= +displayValue.innerHTML;
+    if(operatorType){
+        if (this.innerHTML == "+"){
+            displayValue.innerHTML = Number(previousValue) + Number(currentValue);
+        }else if(operatorType == "-"){
+            
+            displayValue.innerHTML = Number(previousValue) - Number(currentValue);
+        }else if(operatorType == "/"){
+            displayValue.innerHTML = Number(previousValue) / Number(currentValue);
+        }else{
+            displayValue.innerHTML = Number(previousValue) * Number(currentValue);
+        };
     };
     
-    // Clearing the display to collect different variables to be operated
-    displayValue.innerHTML = operatorType;
-    
-    console.log("Operator - previous value is " + previousValue);
-    console.log("Operator - current value is " + currentValue);
-    
+    operatorType = this.innerHTML;
+    categoryType = "operator";
 };
 
 // Sum operator click functionality implementation
 function operatorSum(){
     if (operatorType == "+"){
-         displayValue.innerHTML = +displayValue.innerHTML + previousValue;
+        globalSum = displayValue.innerHTML = Number(previousValue) + Number(currentValue);
     }else if(operatorType == "-"){
-        displayValue.innerHTML = +displayValue.innerHTML - previousValue;
+        globalSum = displayValue.innerHTML = Number(previousValue) - Number(currentValue);
     }else if(operatorType == "/"){
-        displayValue.innerHTML = +displayValue.innerHTML / previousValue;
+        globalSum = displayValue.innerHTML = Number(previousValue) / Number(currentValue);
     }else{
-        // multiply operator goes the last to avoid the comparison with its symbol
-        displayValue.innerHTML = +displayValue.innerHTML * previousValue;
+        globalSum = displayValue.innerHTML = Number(previousValue) * Number(currentValue);
     };
     
-    console.log("Sum - previous value is " + previousValue);
-    console.log("Sum - current value is " + currentValue);
     
+    previousValue = displayValue.innerHTML;
+    currentValue = 0;
+    categoryType = "sum";
 };
 
 // =======
