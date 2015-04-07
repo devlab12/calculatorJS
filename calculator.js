@@ -18,6 +18,7 @@ document.getElementById("reset").addEventListener("click", function () {
     previousValue = 0;
     currentValue = 0;
     categoryType = 0;
+    operatorType = 0
     globalSum = 0;
 });
 
@@ -68,7 +69,6 @@ function numberClick(){
     
     if(displayValue.innerHTML == 0){
         if(displayValue.innerHTML.indexOf(".") != -1){
-            console.log(123123123);
             displayValue.innerHTML += currentValue;
         }else{
             displayValue.innerHTML = currentValue;
@@ -77,10 +77,8 @@ function numberClick(){
         alert('Too many symbols!');
     }else{
         if(categoryType == "number"){    
-            displayValue.innerHTML += currentValue;
-            //previousValue = displayValue.innerHTML; 
+            currentValue = displayValue.innerHTML += currentValue;
         }else{
-            //previousValue
             displayValue.innerHTML = currentValue;
         };
     };
@@ -105,7 +103,6 @@ function operatorClick(){
         if (this.innerHTML == "+"){
             displayValue.innerHTML = Number(previousValue) + Number(currentValue);
         }else if(operatorType == "-"){
-            
             displayValue.innerHTML = Number(previousValue) - Number(currentValue);
         }else if(operatorType == "/"){
             displayValue.innerHTML = Number(previousValue) / Number(currentValue);
