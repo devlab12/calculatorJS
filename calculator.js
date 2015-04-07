@@ -67,6 +67,10 @@ function numberClick(){
         //displayValue.innerHTML += currentValue;
         displayValue.innerHTML = currentValue;
     };
+    
+    console.log("Number - previous value is " + previousValue);
+    console.log("Number - current value is " + currentValue);
+    
 };
 
 // Dot click functionality implementation
@@ -94,9 +98,8 @@ function operatorClick(){
     // Clearing the display to collect different variables to be operated
     displayValue.innerHTML = operatorType;
     
-    console.log("previous value is " + previousValue);
-    console.log(operatorType);
-    
+    console.log("Operator - previous value is " + previousValue);
+    console.log("Operator - current value is " + currentValue);
     
 };
 
@@ -113,8 +116,9 @@ function operatorSum(){
         displayValue.innerHTML = +displayValue.innerHTML * previousValue;
     };
     
-    console.log("previous value is " + previousValue);
-    console.log(operatorType);
+    console.log("Sum - previous value is " + previousValue);
+    console.log("Sum - current value is " + currentValue);
+    
 };
 
 // =======
