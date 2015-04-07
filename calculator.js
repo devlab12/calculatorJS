@@ -67,7 +67,12 @@ function numberClick(){
     };
     
     if(displayValue.innerHTML == 0){
-        displayValue.innerHTML = currentValue;
+        if(displayValue.innerHTML.indexOf(".") != -1){
+            console.log(123123123);
+            displayValue.innerHTML += currentValue;
+        }else{
+            displayValue.innerHTML = currentValue;
+        }
     }else if(displayValue.innerHTML.length == 20){
         alert('Too many symbols!');
     }else{
@@ -85,8 +90,10 @@ function numberClick(){
 
 // Dot click functionality implementation
 function dotClick(){
-    if(displayValue.innerHTML.search(",") == -1){
-       displayValue.innerHTML += ".";
+    if(displayValue.innerHTML.indexOf(".") == -1){
+        displayValue.innerHTML += ".";
+    
+        categoryType = "number";
     };
 };
 
